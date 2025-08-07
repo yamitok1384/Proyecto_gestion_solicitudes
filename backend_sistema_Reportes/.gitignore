@@ -1,20 +1,20 @@
-# Archivos de base de datos
-db.sqlite3
-
-# Archivos de configuración y secretos
+# Archivos de entorno y configuraciones secretas
 *.env
 local_settings.py
-**/settings.pyc
-/sistema_reportes/.env
 
-# Archivos de Python
+# Archivos de base de datos
+*.sqlite3
+
+# Archivos temporales de Python
 __pycache__/
 *.pyc
-.ipynb_checkpoints/
 
-# Entorno virtual
-/env
-sistema_reportes/
+# Carpetas del entorno virtual
+/env/
+/sistema_reportes/Lib/
+/sistema_reportes/Scripts/
+/sistema_reportes/include/
+/sistema_reportes/pyvenv.cfg
 
 # Archivos de PyCharm
 .idea/
@@ -22,18 +22,5 @@ sistema_reportes/
 # Archivos de sistema
 .DS_Store
 
-# ... otros archivos a ignorar
-
 # Archivos comprimidos
 *.zip
-
-
-
-# Python cache
-__pycache__/
-
-# Carpetas del entorno virtual
-/sistema_reportes/Lib/
-/sistema_reportes/Scripts/
-/sistema_reportes/include/
-/sistema_reportes/pyvenv.cfg

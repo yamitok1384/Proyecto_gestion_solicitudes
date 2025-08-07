@@ -1,0 +1,30 @@
+# Archivos de entorno y configuraciones secretas
+*.env
+local_settings.py
+
+# Archivos de base de datos
+*.sqlite3
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entorno virtual (puede variar su nombre, por eso es mejor ignorar por patrón o carpeta completa)
+env/
+sistema_reportes/
+
+# Archivos de configuración del IDE (PyCharm, VSCode, etc.)
+.idea/
+.vscode/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos comprimidos y backups
+*.zip
+*.tar.gz
+*.rar
+*.bak
