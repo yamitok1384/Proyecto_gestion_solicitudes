@@ -1,0 +1,28 @@
+# Archivos de base de datos
+db.sqlite3
+
+# Archivos de configuración y secretos
+*.env
+local_settings.py
+**/settings.pyc
+/sistema_reportes/.env
+
+# Archivos de Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Entorno virtual
+/env
+sistema_reportes/
+
+# Archivos de PyCharm
+.idea/
+
+# Archivos de sistema
+.DS_Store
+
+# ... otros archivos a ignorar
+
+# Archivos comprimidos
+*.zip
