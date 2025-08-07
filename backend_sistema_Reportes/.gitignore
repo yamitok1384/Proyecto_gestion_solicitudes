@@ -26,3 +26,14 @@ sistema_reportes/
 
 # Archivos comprimidos
 *.zip
+
+
+
+# Python cache
+__pycache__/
+
+# Carpetas del entorno virtual
+/sistema_reportes/Lib/
+/sistema_reportes/Scripts/
+/sistema_reportes/include/
+/sistema_reportes/pyvenv.cfg
