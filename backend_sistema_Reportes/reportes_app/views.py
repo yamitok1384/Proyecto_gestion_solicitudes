@@ -1,22 +1,16 @@
-from django.shortcuts import render
 
-# Create your views here.
-# urls.py principal
-#
-# from django.contrib import admin
-# from django.urls import path, include
-#
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('api/', include('reportes_app.urls')), # <-- Esto incluye las URLs de tu app
-# ]
 
+from rest_framework import viewsets
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
+from .models import Incidencia, Estado, Prioridad, Comentario
+from .serializers import IncidenciaSerializer
 
+
+# Esta vista maneja el login del usuario
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def login(request):
@@ -40,5 +34,23 @@ def login(request):
         return Response({'error': 'Invalid credentials'}, status=401)
 
 
+# Este ViewSet proporciona las operaciones CRUD para el modelo Incidencia
+class IncidenciaViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet que proporciona las operaciones CRUD (Crear, Leer, Actualizar, Eliminar)
+    para el modelo Incidencia.
+    """
+    # Define qué objetos de la base de datos se pueden ver
+    queryset = Incidencia.objects.all()
 
+    # Define el serializador a usar para convertir los datos
+    serializer_class = IncidenciaSerializer
+
+    # Asegura que el usuario esté autenticado para acceder a las vistas
+    permission_classes = [IsAuthenticated]
+
+    # Sobreescribe el método perform_create para asignar automáticamente
+    # el usuario que ha iniciado sesión al campo 'reportado_por'
+    def perform_create(self, serializer):
+        serializer.save(reportado_por=self.request.user)
 
