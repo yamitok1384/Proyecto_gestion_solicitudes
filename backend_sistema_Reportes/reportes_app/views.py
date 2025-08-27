@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from .models import Incidencia, Estado, Prioridad, Comentario
 from .serializers import IncidenciaSerializer
+from django.utils import timezone  # Importa timezone para obtener la fecha y hora actuales
 
 
 # Esta vista maneja el login del usuario
@@ -52,5 +53,12 @@ class IncidenciaViewSet(viewsets.ModelViewSet):
     # Sobreescribe el método perform_create para asignar automáticamente
     # el usuario que ha iniciado sesión al campo 'reportado_por'
     def perform_create(self, serializer):
-        serializer.save(reportado_por=self.request.user)
+        # Genera un ticket único basado en la fecha y hora actuales
+        timestamp = timezone.now().strftime('%Y%m%d%H%M%S%f')
+        ticket_unico = f"INC-{timestamp}"
+
+        # Guarda la instancia con el usuario y el ticket único
+        serializer.save(reportado_por=self.request.user, ticket_unico=ticket_unico)
+
+        #serializer.save(reportado_por=self.request.user)
 
